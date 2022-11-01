@@ -10,7 +10,7 @@ const Nav = () => {
                 <img src="" alt="logo"/>
             </div>
             <div className="controls-container">
-                <div className="icon" onClick={() => navigate('/ticket')}>＋</div>
+                <div className="icon" onClick={() => navigate('/task')}>＋</div>
                 <div className="icon" onClick={() => navigate('/')}>⮐</div>
             </div>
         </nav>

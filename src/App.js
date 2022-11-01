@@ -12,7 +12,7 @@ const App = () => {
         <Routes>
             <Route path='/' element={<Dashboard/>}/>
             <Route path='/task' element={<TaskPage/>}/>
-            <Route path='/ticket/:id' element={<TaskPage editMode={true}/>}/>
+            <Route path='/task/:id' element={<TaskPage editMode={true}/>}/>
             <Route path='/login' element={<LoginPage/>}/>
         </Routes>
       </BrowserRouter>

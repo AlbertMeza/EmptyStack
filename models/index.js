@@ -1,7 +1,6 @@
-const { Instructor } = require("./instructor");
-const { Student } = require("./student");
+const Instructor = require("./instructor");
+const StudentsSchema = require("./students");
 
 module.exports = {
-  Instructor,
-  Student,
+    StudentsSchema
 };

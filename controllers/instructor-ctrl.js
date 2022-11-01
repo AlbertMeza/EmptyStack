@@ -24,13 +24,21 @@ const createInstructor = (req, res) => {
     });
   }
 
-  instructor.save().then(() => {
-    return res.status(201).json({
-      success: true,
-      id: instructor._id,
-      message: "Instructor created",
+  instructor
+    .save()
+    .then(() => {
+      return res.status(201).json({
+        success: true,
+        id: instructor._id,
+        message: "Instructor created",
+      });
+    })
+    .catch((e) => {
+      return res.status(400).json({
+        e,
+        message: "Instructor not created",
+      });
     });
-  });
 };
 
 // Read instructor data

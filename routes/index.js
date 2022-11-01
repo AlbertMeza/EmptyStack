@@ -1,5 +1,7 @@
-const UserRoutes = require('./users')
+const UserRoutes = require("./users");
+const InstructorRoutes = require("./instructors");
 
 module.exports = {
-    UserRoutes
-}
+  UserRoutes,
+  InstructorRoutes,
+};

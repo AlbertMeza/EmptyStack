@@ -1,5 +1,7 @@
 const Instructor = require("./instructor");
+const StudentsSchema = require("./students");
 
 module.exports = {
-  Instructor,
+    StudentsSchema,
+    Instructor
 };

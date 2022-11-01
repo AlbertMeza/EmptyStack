@@ -38,7 +38,12 @@ nav .icon {
     width: 100%;
 }
 
-.dashboard .ticket-container {
+.dashboard .task-container {
     height: 80vh;
     overflow: scroll;
+}
+
+.task-card {
+    display: flex;
+    width: 100%;
 }

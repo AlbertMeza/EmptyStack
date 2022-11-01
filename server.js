@@ -5,10 +5,11 @@ const app = express(); // server software
 const PORT = process.env.PORT;
 const bodyParser = require('body-parser')
 const db = require('./db/index');
-const { StudentsSchema } = require('./models')
+const { StudentsSchema } = require('./models');
+const { UserRoutes } = require("./routes");
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // routes
 app.get('/test', (req, res) => {
@@ -17,6 +18,8 @@ app.get('/test', (req, res) => {
         name: "This is a placeholder message for testing purposes."
     })
 });
+
+app.use('/users', UserRoutes);
 
 app.post('/test/db', async (req, res) => {
     const payload = req.body;

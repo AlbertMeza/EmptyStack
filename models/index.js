@@ -1,7 +1,5 @@
-const { Instructor } = require("./instructor");
-const { Student } = require("./student");
+const Instructor = require("./instructor");
 
 module.exports = {
   Instructor,
-  Student,
 };

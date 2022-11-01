@@ -4,7 +4,7 @@ const { Schema } = mongoose.Schema;
 const InstructorSchema = new Schema({
   username: String,
   message: String,
-  links: [{ link: String }],
+  links: [{ url: String }],
   week: String,
 });
 

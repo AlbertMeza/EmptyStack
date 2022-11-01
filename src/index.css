@@ -1,0 +1,44 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+.app {
+    display: flex;
+}
+
+nav {
+    height: 100vh;
+    background-color: rgb(43,43,63);
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+nav .logo-container,
+nav .controls.container {
+    padding: 40px 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+nav .logo-container img {
+    width: 20px;
+}
+
+nav .icon {
+    color: white;
+}
+
+.dashboard {
+    padding: 30px;
+    width: 100%;
+}
+
+.dashboard .ticket-container {
+    height: 80vh;
+    overflow: scroll;
+}

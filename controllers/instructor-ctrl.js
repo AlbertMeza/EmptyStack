@@ -1,0 +1,1 @@
+const { Instructor } = require("./../models");

@@ -1,6 +1,6 @@
 const TaskCard = () => {
     return (
-        <div>TaskCard</div>
+        <div className="ticket-card">TaskCard</div>
     )
 }
 

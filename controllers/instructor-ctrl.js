@@ -1,4 +1,3 @@
-const instructor = require("../models/instructor");
 const { Instructor } = require("./../models");
 
 // Create instructor
@@ -70,7 +69,26 @@ const getInstructor = async (req, res) => {
 };
 
 // Update instructor message
-const updateInstructorMessage = (req, res) => {};
+const updateInstructor = (req, res) => {
+  if (!req.params.id) {
+    return res.status(400).json({
+      message: "Missing id",
+      success: false,
+    });
+  }
+  Instructor.findByIdAndUpdate(req.params.id, req.body, (e) => {
+    if (e) {
+      return res.status(400).json({
+        e,
+        success: false,
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      id: req.params.id,
+    });
+  });
+};
 
 // Update instructor links
 const updateInstructorLinks = (req, res) => {};
@@ -85,7 +103,7 @@ module.exports = {
   createInstructor,
   getInstructors,
   getInstructor,
-  updateInstructorMessage,
+  updateInstructor,
   updateInstructorLinks,
   updateInstructorWeeks,
   deleteInstructorMessage,

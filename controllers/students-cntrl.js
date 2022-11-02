@@ -16,17 +16,19 @@ const attemptLogin = (req, res, next) => {
             if (err) {
                 console.log(err);
                 //res.json({ success: false, message: err });
-                res.redirect('/')
+                //location.reload();
+                res.redirect('http://localhost:3002/login');
             }
             else {
                 if (!user) {
                     //res.json({ success: false, message: "username or password incorrect" });
-                    res.redirect('/')
+                    //location.reload();
+                    res.redirect('http://localhost:3002/login');
                 }
                 else {
                     const token = jwt.sign({ userId: user._id, username: user.username }, secretkey, { expiresIn: "24h" });
                     //res.json({ success: true, message: "Authentication successful", token: token });
-                    res.redirect('/profile')
+                    res.redirect('back')
                 }
             }
         })(req, res); // this needs to be here or the app breaks upon form submission

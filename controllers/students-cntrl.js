@@ -2,6 +2,7 @@ const { StudentsSchema } = require('../models');
 const passport = require('passport');  // authentication
 const jwt = require("jsonwebtoken");
 const secretkey = "secretkeyappearshere"
+const path = require('path');
 
 const attemptLogin = (req, res, next) => {
     if (!req.body.username) {
@@ -14,24 +15,27 @@ const attemptLogin = (req, res, next) => {
         passport.authenticate("local", (err, user, info) => {
             if (err) {
                 console.log(err);
-                res.json({ success: false, message: err });
+                //res.json({ success: false, message: err });
+                res.redirect('/')
             }
             else {
                 if (!user) {
-                    res.json({ success: false, message: "username or password incorrect" });
+                    //res.json({ success: false, message: "username or password incorrect" });
+                    res.redirect('/')
                 }
                 else {
                     const token = jwt.sign({ userId: user._id, username: user.username }, secretkey, { expiresIn: "24h" });
-                    res.json({ success: true, message: "Authentication successful", token: token });
+                    //res.json({ success: true, message: "Authentication successful", token: token });
+                    res.redirect('/profile')
                 }
             }
-        })(req, res);
+        })(req, res); // this needs to be here or the app breaks upon form submission
     }
 }
 
 
 const loadRegistration = (req, res) => {
-    res.render('../public/signup.ejs')
+    res.sendFile(path.join(__dirname, '../public', 'register.html'))
 };
 
 const registerUser = async (req, res) => {
@@ -56,18 +60,19 @@ const registerUser = async (req, res) => {
     await authentication
         .then(() => {
             passport.authenticate("local")(req, res, () => {
-                //return res.redirect('/');
-                return res.status(200).json({
-                    success: true,
-                    message: "User created"
-                  });
+                return res.redirect('/');
+                // return res.status(200).json({
+                //     success: true,
+                //     message: "User created"
+                //   });
             })
             })
         .catch((e) => {
-            return res.status(400).json({
-                e,
-                message: "User not created"
-            })
+            // return res.status(400).json({
+            //     e,
+            //     message: "User not created"
+            // })
+            return res.redirect('back');
         })
 }
 

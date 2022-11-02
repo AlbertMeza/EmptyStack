@@ -9,14 +9,14 @@ import StatusDisplay from "./StatusDisplay";
 const TaskCard = ({color, task}) => {
     return (
         <div className="task-card">
-            {/*<Link>*/}
-                <div className="task-color"></div>
+            <div className="task-color"></div>
+            <Link to={`/task/${task.documentId}`} id="link">
                 <h3>{task.title}</h3>
-                <AvatarDisplay/>
-                <StatusDisplay/>
-                <ComfortDisplay/>
-                <ProgressDisplay/>
-            {/*</Link>*/}
+                <AvatarDisplay task={task}/>
+                <StatusDisplay status={task.status}/>
+                <ComfortDisplay comfort={task.comfort}/>
+                <ProgressDisplay progress={task.progress}/>
+            </Link>
             <DeleteBlock/>
         </div>
 

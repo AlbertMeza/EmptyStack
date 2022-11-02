@@ -1,3 +1,4 @@
+const instructor = require("../models/instructor");
 const { Instructor } = require("./../models");
 
 // Create instructor
@@ -42,11 +43,50 @@ const createInstructor = (req, res) => {
 };
 
 // Read instructor data
+const getInstructors = async (req, res) => {
+  await Instructor.find({}, (e, instructors) => {
+    if (e) {
+      return res.status(400).json({
+        e,
+        success: false,
+      });
+    }
 
-// Update instructor data
+    return res.status(200).json({
+      success: true,
+      data: instructors,
+    });
+  })
+    .clone()
+    .catch((e) => console.log(e));
+};
 
-// Delete instructor data
+const getInstructor = async (req, res) => {
+  const data = await Instructor.findById(req.params.id);
+  return res.status(200).json({
+    success: true,
+    data,
+  });
+};
+
+// Update instructor message
+const updateInstructorMessage = (req, res) => {};
+
+// Update instructor links
+const updateInstructorLinks = (req, res) => {};
+
+// Update instructor weeks
+const updateInstructorWeeks = (req, res) => {};
+
+// Delete instructor message
+const deleteInstructorMessage = async (req, res) => {};
 
 module.exports = {
   createInstructor,
+  getInstructors,
+  getInstructor,
+  updateInstructorMessage,
+  updateInstructorLinks,
+  updateInstructorWeeks,
+  deleteInstructorMessage,
 };

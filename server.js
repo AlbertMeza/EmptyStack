@@ -7,9 +7,21 @@ const bodyParser = require('body-parser')
 const db = require('./db/index');
 const { StudentsSchema } = require('./models');
 const { UserRoutes } = require("./routes");
+const session = require('express-session');  // session middleware
+const { v4: uuidv4 } = require('uuid');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(session({
+    genid: function (req) {
+      return uuidv4();
+    },
+    secret: 'r8q,+&1LM3)CD*zAGpx1xm{NeQhc;#',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60 * 60 * 1000 }
+  }));
 
 // routes
 app.get('/test', (req, res) => {

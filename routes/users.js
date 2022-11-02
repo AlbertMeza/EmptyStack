@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const connectEnsureLogin = require('connect-ensure-login'); //authorization
-const { loadRegistration, registerUser, logoutUser, getProfile, getUsers } = require('../controllers/students-cntrl')
+const { loadRegistration, registerUser, logoutUser, getProfile, getUsers, attemptLogin } = require('../controllers/students-cntrl')
 
 // login endpoint is handled by html form
+router.post('/login', attemptLogin);
 
 // go to register page
 router.get('/register', loadRegistration);

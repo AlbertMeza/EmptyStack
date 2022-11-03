@@ -31,7 +31,8 @@ nav .controls.container {
 }
 
 nav .logo-container img {
-    width: 20px;
+    width: 50px;
+    height: auto;
 }
 
 nav .icon {
@@ -141,4 +142,43 @@ nav .icon {
     justify-content: center;
     align-items: center;
     color: white;
+}
+
+.task {
+    padding: 30px;
+    width: 100%;
+}
+
+.task .task-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.task form {
+    display: flex;
+}
+
+.task form section {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 500px;
+}
+
+.task form label {
+    margin: 20px 0 0 0;
+}
+
+.task form select,
+.task form input {
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 2px solid lightgrey;
+    margin: 5px;
+}
+
+.task form .multiple-input-container {
+    margin: 20px 0 20px 0;
 }

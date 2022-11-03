@@ -7,10 +7,10 @@ const StatusDisplay = ({status}) => {
                 color = 'rgb(186,255,201)'
                 break
             case 'learning':
-                color = 'rgb(255,223,186)'
+                color = 'rgb(186,255,255)'
                 break
             case 'not started':
-                color = 'rgb(186,255,255)'
+                color = 'rgb(255,223,186)'
                 break
             default:
                 color = 'rgb(186,255,255)'

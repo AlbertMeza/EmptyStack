@@ -1,4 +1,4 @@
-import blankAvatar from '../images/blank-avatar.jpeg'
+import blankAvatar from '../images/blank-task.jpeg'
 
 const AvatarDisplay = ({task}) => {
     return (

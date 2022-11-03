@@ -4,58 +4,56 @@ const { Instructor, User } = require("./../models");
 const createInstructor = (req, res) => {
   // capture payload
   const payload = req.body;
-  // validate payload
+
   if (!payload) {
-    // if bad request send a status code and a json message
     return res.status(400).json({
-      // success - false
       success: false,
-      // error - pass a message
       error: "Request body must not be empty",
     });
   }
-  // create a new instance of user
+
   const user = new User({
     email: payload.email,
     username: payload.username,
     password: payload.password,
     isInstructor: true,
   });
-  if (!user.isInstructor) {
+  if (!user) {
     return res.status(400).json({
       success: false,
       error: "Failed to create instance of user",
     });
   }
-  user.save().then(() => {
-    // create a new instance
-    const instructor = new Instructor({
-      info: user._id,
-    });
-    // check if instance was created
-    if (!instructor) {
-      return res.status(400).json({
-        success: false,
-        error: "Failed to create instance of instructor",
-      });
-    }
 
-    instructor
-      .save()
-      .then(() => {
-        return res.status(201).json({
-          success: true,
-          id: instructor._id,
-          message: "Instructor created",
-        });
-      })
-      .catch((e) => {
-        return res.status(400).json({
-          e,
-          message: "Instructor not created",
-        });
+  if (user.isInstructor) {
+    user.save().then(() => {
+      const instructor = new Instructor({
+        info: user._id,
       });
-  });
+      if (!instructor) {
+        return res.status(400).json({
+          success: false,
+          error: "Failed to create instance of instructor",
+        });
+      }
+
+      instructor
+        .save()
+        .then(() => {
+          return res.status(201).json({
+            success: true,
+            id: instructor._id,
+            message: "Instructor created",
+          });
+        })
+        .catch((e) => {
+          return res.status(400).json({
+            e,
+            message: "Instructor not created",
+          });
+        });
+    });
+  }
 };
 
 // Read instructor data
@@ -108,10 +106,7 @@ const createResource = (req, res) => {
     });
   }
 
-  resource
-    .save()
-    .then()
-    .catch();
+  resource.save().then().catch();
 };
 
 const create = () => {};

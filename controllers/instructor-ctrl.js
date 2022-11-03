@@ -1,4 +1,4 @@
-const { Instructor } = require("./../models");
+const { Instructor, User } = require("./../models");
 
 // Create instructor
 const createInstructor = (req, res) => {
@@ -14,48 +14,67 @@ const createInstructor = (req, res) => {
       error: "Request body must not be empty",
     });
   }
-  // create a new instance
-  const instructor = new Instructor(payload);
-  // check if instance was created
-  if (!instructor) {
+  // create a new instance of user
+  const user = new User({
+    email: payload.email,
+    username: payload.username,
+    password: payload.password,
+    isInstructor: true,
+  });
+  if (!user.isInstructor) {
     return res.status(400).json({
       success: false,
-      error: "Failed to create instance of instructor",
+      error: "Failed to create instance of user",
     });
   }
-
-  instructor
-    .save()
-    .then(() => {
-      return res.status(201).json({
-        success: true,
-        id: instructor._id,
-        message: "Instructor created",
-      });
-    })
-    .catch((e) => {
-      return res.status(400).json({
-        e,
-        message: "Instructor not created",
-      });
+  user.save().then(() => {
+    // create a new instance
+    const instructor = new Instructor({
+      info: user._id,
     });
+    // check if instance was created
+    if (!instructor) {
+      return res.status(400).json({
+        success: false,
+        error: "Failed to create instance of instructor",
+      });
+    }
+
+    instructor
+      .save()
+      .then(() => {
+        return res.status(201).json({
+          success: true,
+          id: instructor._id,
+          message: "Instructor created",
+        });
+      })
+      .catch((e) => {
+        return res.status(400).json({
+          e,
+          message: "Instructor not created",
+        });
+      });
+  });
 };
 
 // Read instructor data
 const getInstructors = async (req, res) => {
-  await Instructor.find({}, (e, instructors) => {
-    if (e) {
-      return res.status(400).json({
-        e,
-        success: false,
-      });
-    }
+  await Instructor.find({})
+    .populate("info")
+    .exec((e, instructors) => {
+      if (e) {
+        return res.status(400).json({
+          e,
+          success: false,
+        });
+      }
 
-    return res.status(200).json({
-      success: true,
-      data: instructors,
-    });
-  })
+      return res.status(200).json({
+        success: true,
+        data: instructors,
+      });
+    })
     .clone()
     .catch((e) => console.log(e));
 };
@@ -68,43 +87,39 @@ const getInstructor = async (req, res) => {
   });
 };
 
-// Update instructor message
-const updateInstructor = (req, res) => {
-  if (!req.params.id) {
+// Create a resource
+const createResource = (req, res) => {
+  // Receive a request
+  const payload = req.body;
+  // Validate payload
+  if (!payload) {
     return res.status(400).json({
-      message: "Missing id",
       success: false,
+      error: "Request body must not be empty",
     });
   }
-  Instructor.findByIdAndUpdate(req.params.id, req.body, (e) => {
-    if (e) {
-      return res.status(400).json({
-        e,
-        success: false,
-      });
-    }
-    return res.status(200).json({
-      success: true,
-      id: req.params.id,
+  // Instantiate a resource
+  const resource = new Resource(payload);
+  // Validate the instance
+  if (!resource) {
+    return res.status(400).json({
+      success: false,
+      error: "Failed to create instance of Resource",
     });
-  });
+  }
+
+  resource
+    .save()
+    .then()
+    .catch();
 };
 
-// Update instructor links
-const updateInstructorLinks = (req, res) => {};
+const create = () => {};
 
-// Update instructor weeks
-const updateInstructorWeeks = (req, res) => {};
-
-// Delete instructor message
-const deleteInstructorMessage = async (req, res) => {};
+// Create a week
 
 module.exports = {
   createInstructor,
   getInstructors,
   getInstructor,
-  updateInstructor,
-  updateInstructorLinks,
-  updateInstructorWeeks,
-  deleteInstructorMessage,
 };

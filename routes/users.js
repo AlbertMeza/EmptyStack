@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const connectEnsureLogin = require("connect-ensure-login"); //authorization
+
 const {
   loadRegistration,
   registerUser,
@@ -8,7 +9,7 @@ const {
   getProfile,
   getUsers,
   attemptLogin,
-} = require("../controllers/students-cntrl");
+} = require("../controllers/user-ctrl");
 
 // login endpoint is handled by html form
 router.post("/login", attemptLogin);

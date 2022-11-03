@@ -1,7 +1,11 @@
 const Instructor = require("./instructor");
-const StudentsSchema = require("./students");
+const User = require("./user");
+const Resource = require("./instructor");
+const Student = require("./student");
 
 module.exports = {
-    StudentsSchema,
-    Instructor
+  Student,
+  Instructor,
+  Resource,
+  User,
 };

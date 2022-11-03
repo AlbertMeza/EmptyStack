@@ -1,16 +1,21 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const passportLocalMongoose = require("passport-local-mongoose");
 
 const InstructorSchema = new Schema({
-  email: String,
-  username: String,
-  password: String,
+  info: { type: Schema.Types.ObjectId, ref: "User" },
   message: String,
-  links: [String],
-  weeks: [String],
+  links: [{ type: Schema.Types.ObjectId, ref: "Resource" }],
+  weeks: [{ type: Schema.Types.ObjectId, ref: "Week" }],
 });
 
-InstructorSchema.plugin(passportLocalMongoose);
+const ResourceSchema = new Schema({
+  link: String,
+});
+
+const WeekSchema = new Schema({
+  topics: String,
+});
 
 module.exports = mongoose.model("Instructor", InstructorSchema);
+module.exports = mongoose.model("Resource", ResourceSchema);
+module.exports = mongoose.model("Week", WeekSchema);

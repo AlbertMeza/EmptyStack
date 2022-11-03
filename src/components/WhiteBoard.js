@@ -1,6 +1,6 @@
 const WhiteBoard = () => {
   return (
-    <div>
+    <div className="whiteboard">
       <textarea />
     </div>
   );

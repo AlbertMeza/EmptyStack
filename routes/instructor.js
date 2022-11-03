@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 const {
-  createInstructor,
   getInstructors,
   getInstructor,
 } = require("./../controllers/instructor-ctrl");

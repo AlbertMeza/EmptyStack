@@ -8,14 +8,4 @@ const InstructorSchema = new Schema({
   weeks: [{ type: Schema.Types.ObjectId, ref: "Week" }],
 });
 
-const ResourceSchema = new Schema({
-  link: String,
-});
-
-const WeekSchema = new Schema({
-  topics: String,
-});
-
 module.exports = mongoose.model("Instructor", InstructorSchema);
-module.exports = mongoose.model("Resource", ResourceSchema);
-module.exports = mongoose.model("Week", WeekSchema);

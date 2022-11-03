@@ -1,5 +1,14 @@
+import React from 'react';
+import { useState } from 'react';
+
 const LoginPage = () => {
-    return (
+  let [usernameee, setUsername] = useState(null);
+
+  function handleSubmit(e) {
+    setUsername(e.currentTarget.username.value);
+  }
+
+  return (
         <>
   {/*[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]*/}
   {/*[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]*/}
@@ -28,7 +37,7 @@ const LoginPage = () => {
       <div className="col-md-4" />
       <div className="col-md-4  justify-content-center">
         {/*BOOTSTRAP FORM*/}
-        <form method="post" action="http://localhost:3001/users/login" >
+        <form method="post" action="http://localhost:3001/users/login" onSubmit={handleSubmit} >
           {/* Email input */}
           <div className="form-outline mb-4">
             <input
@@ -110,7 +119,5 @@ const LoginPage = () => {
 </>
     )
 }
-
-
-
-export default LoginPage
+  
+ export default LoginPage

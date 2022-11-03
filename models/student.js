@@ -7,4 +7,14 @@ const Student = new Schema({
   tasks: [{ task: String, isComplete: Boolean }],
 });
 
+const Image = new Schema({
+  imageURL: String,
+});
+
+const Task = new Schema({
+  task: String,
+  isComplete: Boolean,
+});
+
 module.exports = mongoose.model("Students", Student);
+// module.exports = mong;

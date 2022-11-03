@@ -85,8 +85,6 @@ const registerUser = async (req, res) => {
             message: "Instructor not created",
           });
         });
-      //   await instructor.save();
-      //   res.status(201).send("Instructor created");
     } else {
       const student = new Student({
         info: user._id,
@@ -112,26 +110,30 @@ const registerUser = async (req, res) => {
             message: "Student not created",
           });
         });
-      //   await student.save();
-      //   res.status(201).send("Student created");
     }
+    passport.authenticate("local")(req, res, () => {
+      return res.status(200).json({
+        success: true,
+        message: "Authenticated",
+      });
+    });
   });
 
-  //   user
-  //     .then(() => {
-  //       passport.authenticate("local")(req, res, () => {
-  //         return res.status(200).json({
-  //           success: true,
-  //           message: "User created",
-  //         });
-  //       });
-  //     })
-  //     .catch((e) => {
-  //       return res.status(400).json({
-  //         e,
-  //         message: "User not created",
+  // user
+  //   .then(() => {
+  //     passport.authenticate("local")(req, res, () => {
+  //       return res.status(200).json({
+  //         success: true,
+  //         message: "User created",
   //       });
   //     });
+  //   })
+  //   .catch((e) => {
+  //     return res.status(400).json({
+  //       e,
+  //       message: "User not created",
+  //     });
+  //   });
 };
 
 // This function is called when users logout

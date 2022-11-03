@@ -17,5 +17,5 @@ const WeekSchema = new Schema({
 });
 
 module.exports = mongoose.model("Instructor", InstructorSchema);
-module.exports = mongoose.model("Resource", ResourceSchema);
-module.exports = mongoose.model("Week", WeekSchema);
+// module.exports = mongoose.model("Resource", ResourceSchema);
+// module.exports = mongoose.model("Week", WeekSchema);

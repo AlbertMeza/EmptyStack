@@ -112,10 +112,7 @@ const registerUser = async (req, res) => {
         });
     }
     passport.authenticate("local")(req, res, () => {
-      return res.status(200).json({
-        success: true,
-        message: "Authenticated",
-      });
+      return res.status(200);
     });
   });
 

@@ -1,20 +1,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const Student = new Schema({
+const StudentSchema = new Schema({
   info: { type: Schema.Types.ObjectId, ref: "User" },
-  visionBoard: [{ imageURL: String }],
-  tasks: [{ task: String, isComplete: Boolean }],
+  visionBoard: [{ type: Schema.Types.ObjectId, ref: "Image" }],
+  tasks: [{ type: Schema.Types.ObjectId, ref: "Task" }],
 });
 
-const Image = new Schema({
-  imageURL: String,
-});
-
-const Task = new Schema({
-  task: String,
-  isComplete: Boolean,
-});
-
-module.exports = mongoose.model("Students", Student);
-// module.exports = mong;
+module.exports = mongoose.model("Students", StudentSchema);

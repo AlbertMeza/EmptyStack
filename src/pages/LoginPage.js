@@ -1,10 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 
-// const LoginPage = () => {
-export default function LoginPage(props) {
-  // const {useState} = React;
-  let [usernameee, setUsername] = useState("dfasdfsdaf");
+const LoginPage = () => {
+  let [usernameee, setUsername] = useState(null);
 
   function handleSubmit(e) {
     setUsername(e.currentTarget.username.value);
@@ -122,4 +120,4 @@ export default function LoginPage(props) {
     )
 }
   
-  // export default LoginPage
+ export default LoginPage

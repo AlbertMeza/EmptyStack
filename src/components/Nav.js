@@ -1,4 +1,5 @@
 import {useNavigate} from "react-router-dom";
+import blankProfile from '../images/blank-profile.png'
 
 const Nav = () => {
 
@@ -7,7 +8,7 @@ const Nav = () => {
     return (
         <nav>
             <div className="logo-container">
-                <img src="" alt="logo"/>
+                <img src={blankProfile} alt="logo"/>
             </div>
             <div className="controls-container">
                 <div className="icon" onClick={() => navigate('/task')}>＋</div>

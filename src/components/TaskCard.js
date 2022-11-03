@@ -6,11 +6,11 @@ import DeleteBlock from "./DeleteBlock";
 import StatusDisplay from "./StatusDisplay";
 
 
-const TaskCard = ({color, task}) => {
+const TaskCard = ({id,task}) => {
     return (
         <div className="task-card">
             <div className="task-color"></div>
-            <Link to={`/task/${task.documentId}`} id="link">
+            <Link to={`/task/${task.id}`} id="link">
                 <h3>{task.title}</h3>
                 <AvatarDisplay task={task}/>
                 <StatusDisplay status={task.status}/>

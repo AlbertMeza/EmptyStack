@@ -8,6 +8,11 @@ html, body {
     display: flex;
 }
 
+#link {
+    text-decoration: none;
+    color: black
+}
+
 nav {
     height: 100vh;
     background-color: rgb(43,43,63);
@@ -26,7 +31,8 @@ nav .controls.container {
 }
 
 nav .logo-container img {
-    width: 20px;
+    width: 50px;
+    height: auto;
 }
 
 nav .icon {
@@ -46,4 +52,133 @@ nav .icon {
 .task-card {
     display: flex;
     width: 100%;
+}
+
+.task-card #link > * {
+    background-color: lightgray;
+    margin: 2px;
+    padding: 30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.task-card #link {
+    display: flex;
+    width: 100%;
+
+}
+
+.task-card .task-color {
+    width: 15px !important;
+    padding: 10px !important;
+    margin: 2px;
+}
+
+.task-card .avatar-container {
+    display: flex;
+    justify-content: center;
+    width: 80px;
+}
+
+.task-card .img-container {
+    height: 75px;
+    width: 75px;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.task-card .img-container img {
+    width: 100%;
+}
+
+.task-card .status-display {
+    display: flex;
+    justify-content: center;
+}
+
+.task-card .comfort-display .star-container {
+    display: flex;
+    justify-content: center;
+}
+
+.task-card .comfort-display .star-container h3 {
+    margin: 5px;
+    padding: 0;
+}
+
+.task-card .progress-display {
+    min-width: 200px;
+}
+
+.task-card .progress-bar {
+    width: 100%;
+    height: 30px;
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.task-card .progress-bar .progress-amount {
+    background-color: mediumslateblue;
+    height: 100%
+}
+
+.task-card .delete-block {
+    background-color: white;
+    width: 50px;
+    margin: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.task-card .delete-block .delete-btn {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.task {
+    padding: 30px;
+    width: 100%;
+}
+
+.task .task-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.task form {
+    display: flex;
+}
+
+.task form section {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 500px;
+}
+
+.task form label {
+    margin: 20px 0 0 0;
+}
+
+.task form select,
+.task form input {
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 2px solid lightgrey;
+    margin: 5px;
+}
+
+.task form .multiple-input-container {
+    margin: 20px 0 20px 0;
 }

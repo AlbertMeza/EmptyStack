@@ -3,7 +3,7 @@ import Nav from "./components/Nav";
 import Dashboard from "./pages/Dashboard";
 import TaskPage from "./pages/TaskPage";
 import LoginPage from "./pages/LoginPage";
-import InstructorHome from "./pages/InstructorHome"; // Added by Dorian
+import RegisterPage from "./pages/RegisterPage";
 
 const App = () => {
   return (
@@ -11,14 +11,13 @@ const App = () => {
       <BrowserRouter>
         <Nav />
         <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/task" element={<TaskPage />} />
-          <Route path="/task/:id" element={<TaskPage editMode={true} />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route
-            path="/instructor"
-            element={<InstructorHome /* Added by Dorian */ />}
-          />
+
+            <Route path='/' element={<Dashboard/>}/>
+            <Route path='/task' element={<TaskPage/>}/>
+            <Route path='/task/:id' element={<TaskPage editMode={true}/>}/>
+            <Route path='/login' element={<LoginPage/>}/>
+            <Route path='/register' element={<RegisterPage/>}/>
+
         </Routes>
       </BrowserRouter>
     </div>

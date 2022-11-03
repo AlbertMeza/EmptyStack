@@ -24,6 +24,9 @@ app.use(session({
   }));
 
 // routes
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/login.html')
+})
 app.get('/test', (req, res) => {
     res.json({
         success: true,

@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 const passportLocalMongoose = require('passport-local-mongoose');
 
 const StudentsSchema = new Schema({ 
-    email: { type: String },
-    username: { type: String },
-    password: { type: String }, 
+    email: String,
+    username: String,
+    password: String, 
     visionBoard: [{ imageURL: String }],
     tasks: [{ task: String, isComplete: Boolean }]
 });

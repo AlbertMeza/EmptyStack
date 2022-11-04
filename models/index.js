@@ -1,7 +1,17 @@
+const User = require("./user");
+const Student = require("./student");
 const Instructor = require("./instructor");
-const StudentsSchema = require("./students");
+const Resource = require("./resource");
+const Task = require("./task");
+const Week = require("./week");
+const Image = require("./image");
 
 module.exports = {
-    StudentsSchema,
-    Instructor
+  Student,
+  Instructor,
+  User,
+  Resource,
+  Task,
+  Week,
+  Image,
 };

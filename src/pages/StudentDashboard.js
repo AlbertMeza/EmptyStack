@@ -1,6 +1,7 @@
 import TaskCard from "../components/TaskCard";
 import {useState} from "react"
 import Cookies from 'js-cookie';
+import loadingGif from "../images/Spinner-1s-200px.svg";
 
 const StudentDashboard = () => {
 
@@ -380,19 +381,54 @@ const StudentDashboard = () => {
 
     ]
 
-    const uniqueCategories = [
-        ...new Set(tasks?.map(({category}) => category))
-    ]
-
-    const handleSubmit = () => {
-        console.log("handled")
-    }
-
-    const [searchData, setSearch] = useState("")
-
-    const [descData, setDesc] = useState("")
-
-    const [apiType, setAPI] = useState("")
+    const uniqueCategories = [...new Set(tasks?.map(({ category }) => category))];
+    const [searchData, setSearch] = useState("");
+    const [descData, setDesc] = useState("");
+    const [apiType, setAPI] = useState("");
+    const [unSplash, setUnsplash] = useState(false);
+    const [Gripfy, setGripfy] = useState(false);
+    const [imgURL, setImgUrl] = useState("false");
+    const [show,setshow]= useState(true)
+      const [preloading, setpreloading] = useState(true);
+      
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      setshow(false)
+      setpreloading(true);
+      if (unSplash) {
+        fetch(`https://source.unsplash.com/400x250/?${searchData}`).then(
+          (response) => {
+            setImgUrl(response.url);
+            setpreloading(false);
+          }
+        );
+        console.log("UnSplash", unSplash);
+      } else {
+        fetch(
+          `https://api.giphy.com/v1/gifs/search?api_key=3hnvkaO5BVe5JKzQihSEB2ve8o3mXGf4&q=${searchData}&limit=1&offset=0&rating=g&lang=en`
+        )
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data.data[0].images);
+            setImgUrl(data.data[0].images.fixed_width.url);
+            setpreloading(false);
+          })
+          .then((err) => console.log(err));
+        console.log("Gripfy", Gripfy);
+      }
+    };
+    const radioChange = (e) => {
+      console.log(e.target.id);
+      if (e.target.id == "giphy") {
+        setGripfy(true);
+        setUnsplash(false);
+      } else {
+        setGripfy(false);
+        setUnsplash(true);
+      }
+    };
 
     const username = document.cookie
                     .split(';')[1]
@@ -421,7 +457,7 @@ const StudentDashboard = () => {
                                 name="description"
                                 type="text"
                                 onChange={(e) => setDesc(e.target.value)}
-                                required={true}
+                                //required={true}
                                 placeholder="description"
                             />
                         </section>
@@ -458,6 +494,20 @@ const StudentDashboard = () => {
                         <input type="submit" className='submit-btn'/>
                     </form>
             </div>
+
+            {show ? (
+                ""
+                ) : (
+                <div
+                    style={{
+                    width: "100%",
+                    marginTop: "10px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    }}>    {preloading ? <img src={loadingGif} /> : <img src={imgURL} />}
+                </div>)}
+
             <h1>My Dashboard</h1>
             <div className="task-container">
                 {tasks && uniqueCategories?.map((uniqueCategory, categoryIndex) => (

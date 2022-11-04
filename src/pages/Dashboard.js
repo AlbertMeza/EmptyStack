@@ -1,5 +1,6 @@
 import TaskCard from "../components/TaskCard";
 import {useState} from "react"
+import loadingGif from "../images/Spinner-1s-200px.svg";
 
 const Dashboard = () => {
 
@@ -375,23 +376,58 @@ const Dashboard = () => {
             progress: 40,
             description: 'data types in Javascript',
         },
-
-
     ]
 
-    const uniqueCategories = [
-        ...new Set(tasks?.map(({category}) => category))
-    ]
+    const uniqueCategories = [...new Set(tasks?.map(({ category }) => category))];
+    const [searchData, setSearch] = useState("");
+    const [descData, setDesc] = useState("");
+    const [apiType, setAPI] = useState("");
 
-    const handleSubmit = () => {
-        console.log("handled")
-    }
 
-    const [searchData, setSearch] = useState("")
+    const [unSplash, setUnsplash] = useState(false);
+    const [Gripfy, setGripfy] = useState(false);
+    const [imgURL, setImgUrl] = useState("false");
+    const [show,setshow]= useState(true)
+    const [preloading, setpreloading] = useState(true);
 
-    const [descData, setDesc] = useState("")
-
-    const [apiType, setAPI] = useState("")
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setshow(false)
+        setpreloading(true);
+        if (unSplash) {
+            fetch(`https://source.unsplash.com/400x250/?${searchData}`).then(
+                (response) => {
+                    setImgUrl(response.url);
+                    setpreloading(false);
+                }
+            );
+            console.log("UnSplash", unSplash);
+        } else {
+            fetch(
+                `  https://api.giphy.com/v1/gifs/search?api_key=3hnvkaO5BVe5JKzQihSEB2ve8o3mXGf4&q=${searchData}&limit=1&offset=0&rating=g&lang=en`
+            )
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+                    console.log(data.data[0].images);
+                    setImgUrl(data.data[0].images.fixed_width.url);
+                    setpreloading(false);
+                })
+                .then((err) => console.log(err));
+            console.log("Gripfy", Gripfy);
+        }
+    };
+    const radioChange = (e) => {
+        console.log(e.target.id);
+        if (e.target.id == "giphy") {
+            setGripfy(true);
+            setUnsplash(false);
+        } else {
+            setGripfy(false);
+            setUnsplash(true);
+        }
+    };
 
     return (
         <div className="dashboard">
@@ -399,78 +435,88 @@ const Dashboard = () => {
             <h1>Vision Board</h1>
             <h4>Build your why here</h4>
             <div className="vision-container">
-                    <form onSubmit={handleSubmit}>
-                        <section>
-                            <label htmlFor="search"></label>
-                            <input
-                                id="search"
-                                name="search"
-                                type="text"
-                                onChange={(e) => setSearch(e.target.value)}
-                                required={true}
-                                placeholder="search"
-                            />
-                            <label htmlFor="description"></label>
-                            <input
-                                id="description"
-                                name="description"
-                                type="text"
-                                onChange={(e) => setDesc(e.target.value)}
-                                required={true}
-                                placeholder="description"
-                            />
-                        </section>
-                        <section>
-                            <input
-                                id="unsplash"
-                                name="api"
-                                type="radio"
-                                required={true}
-                            />
-                            <label htmlFor="unsplash">unsplash</label>
-                            <input
-                                id="giphy"
-                                name="api"
-                                type="radio"
-                                required={true}
-                            />
-                            <label htmlFor="giphy">giphy</label>
-                            <input
-                                id="own"
-                                name="api"
-                                type="radio"
-                                required={true}
-                            />
-                            <label htmlFor="own">own</label>
-                            <label htmlFor="own"></label>
-                            <input
-                                id="own"
-                                name="api"
-                                type="text"
-                                placeholder="insert URL"
-                            />
-                        </section>
-                        <input type="submit" className='submit-btn'/>
-                    </form>
+                <form onSubmit={handleSubmit}>
+                    <section>
+                        <label htmlFor="search"></label>
+                        <input
+                            id="search"
+                            name="search"
+                            type="text"
+                            onChange={(e) => setSearch(e.target.value)}
+                            required={true}
+                            placeholder="search"
+                        />
+                        <label htmlFor="description"></label>
+                        <input
+                            id="description"
+                            name="description"
+                            type="text"
+                            onChange={(e) => setDesc(e.target.value)}
+                            // required={true}
+                            placeholder="description"
+                        />
+                    </section>
+                    <section>
+                        <input
+                            id="unsplash"
+                            name="api"
+                            type="radio"
+                            onChange={radioChange}
+                            // required={true}
+                        />
+                        <label htmlFor="unsplash">unsplash</label>
+                        <input
+                            id="giphy"
+                            name="api"
+                            type="radio"
+                            onChange={radioChange}
+                            required={true}
+                        />
+                        <label htmlFor="giphy">giphy</label>
+                        <input
+                            id="giphy"
+                            name="api"
+                            type="radio"
+                            // required={true}
+                        />
+                        <label htmlFor="own">own</label>
+                        <label htmlFor="own"></label>
+                        <input id="own" name="api" type="text" placeholder="insert URL" />
+                    </section>
+                    <input type="submit" className="submit-btn" />
+                </form>
             </div>
+            {show ? (
+                ""
+            ) : (
+                <div
+                    style={{
+                        width: "100%",
+                        marginTop: "10px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }}
+                >
+                    {preloading ? <img src={loadingGif} /> : <img src={imgURL} />}
+                </div>
+            )}
             <h1>My Dashboard</h1>
             <div className="task-container">
-                {tasks && uniqueCategories?.map((uniqueCategory, categoryIndex) => (
-                    <div key={categoryIndex}>
-                        <h3>{uniqueCategory}</h3>
-                        {tasks.filter(task => task.category === uniqueCategory)
-                            .map((filteredTask, taskIndex) => (
-                                <TaskCard
-                                    id={taskIndex}
-                                    task={filteredTask}
-                                />
-                            ))}
-                    </div>
-                ))}
+                {tasks &&
+                    uniqueCategories?.map((uniqueCategory, categoryIndex) => (
+                        <div key={categoryIndex}>
+                            <h3>{uniqueCategory}</h3>
+                            {tasks
+                                .filter((task) => task.category === uniqueCategory)
+                                .map((filteredTask, taskIndex) => (
+                                    <TaskCard id={taskIndex} task={filteredTask} />
+                                ))}
+                        </div>
+                    ))}
             </div>
         </div>
+    );
+};
 
-    )
-}
-
-export default Dashboard
+export default Dashboard;

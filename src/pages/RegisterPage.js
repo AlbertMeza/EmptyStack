@@ -106,7 +106,6 @@ class RegisterPage extends React.Component {
                           type="password"
                           id="form3Example4c"
                           className="form-control"
-                          name='password'
                         />
                         <label className="form-label" htmlFor="form3Example4c">
                           Password

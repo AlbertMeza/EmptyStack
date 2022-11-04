@@ -377,8 +377,6 @@ const StudentDashboard = () => {
             progress: 40,
             description: 'data types in Javascript',
         },
-
-
     ]
 
     const uniqueCategories = [...new Set(tasks?.map(({ category }) => category))];

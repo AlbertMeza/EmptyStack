@@ -54,6 +54,8 @@ class LoginPage extends React.Component {
       >
         <div className="col-md-4" />
         <div className="col-md-4  justify-content-center">
+        <img src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp' className="justify-content-center"></img>
+          
           {/*BOOTSTRAP FORM*/}
           <form method="post" action="http://localhost:3001/users/login" onSubmit={this.handleChange} >
             {/* Email input */}

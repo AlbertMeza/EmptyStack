@@ -1,6 +1,7 @@
 const ComfortDisplay = ({comfort}) => {
     return (
         <div className="comfort-display">
+            <h6>Comfort Level</h6>
             <div className="star-container">
                 <h3 style={{color: comfort >= 1 ? 'rgb(253,222,0)' : ''}}>★</h3>
                 <h3 style={{color: comfort >= 2 ? 'rgb(253,222,0)' : ''}}>★</h3>

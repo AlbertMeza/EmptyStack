@@ -12,10 +12,18 @@ const TaskCard = ({id,task}) => {
             <div className="task-color"></div>
             <Link to={`/task/${task.id}`} id="link">
                 <h3>{task.title}</h3>
+            </Link>
+            <div className="image-card">
                 <AvatarDisplay task={task}/>
+            </div>
+            <Link to={`/task/${task.id}`} id="link">
                 <StatusDisplay status={task.status}/>
-                <ComfortDisplay comfort={task.comfort}/>
                 <ProgressDisplay progress={task.progress}/>
+            </Link>
+            <Link to={`/taskComfort`} id="comfort-link">
+                <div className="comfort-task">
+                <ComfortDisplay comfort={task.comfort}/>
+                </div>
             </Link>
             <DeleteBlock/>
         </div>

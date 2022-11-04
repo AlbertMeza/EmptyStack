@@ -10,7 +10,7 @@ const TaskPage = () => {
 
     const editMode = false
 
-    const navigate = useNavigate()
+    //const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -35,8 +35,6 @@ const TaskPage = () => {
     }
 
     const categories = ["test1","test2","test3"]
-
-    console.log(formData)
 
     return (
         <div className="task">

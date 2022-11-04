@@ -1,6 +1,5 @@
 import TaskCard from "../components/TaskCard";
-import CSS from "../images/CSS.png"
-import HTML from "../images/HTML5.png"
+import {useState} from "react"
 
 const Dashboard = () => {
 
@@ -384,10 +383,76 @@ const Dashboard = () => {
         ...new Set(tasks?.map(({category}) => category))
     ]
 
+    const handleSubmit = () => {
+        console.log("handled")
+    }
+
+    const [searchData, setSearch] = useState("")
+
+    const [descData, setDesc] = useState("")
+
+    const [apiType, setAPI] = useState("")
+
     return (
         <div className="dashboard">
             <h1>Hello username!</h1>
             <h1>Vision Board</h1>
+            <h4>Build your why here</h4>
+            <div className="vision-container">
+                    <form onSubmit={handleSubmit}>
+                        <section>
+                            <label htmlFor="search"></label>
+                            <input
+                                id="search"
+                                name="search"
+                                type="text"
+                                onChange={(e) => setSearch(e.target.value)}
+                                required={true}
+                                placeholder="search"
+                            />
+                            <label htmlFor="description"></label>
+                            <input
+                                id="description"
+                                name="description"
+                                type="text"
+                                onChange={(e) => setDesc(e.target.value)}
+                                required={true}
+                                placeholder="description"
+                            />
+                        </section>
+                        <section>
+                            <input
+                                id="unsplash"
+                                name="api"
+                                type="radio"
+                                required={true}
+                            />
+                            <label htmlFor="unsplash">unsplash</label>
+                            <input
+                                id="giphy"
+                                name="api"
+                                type="radio"
+                                required={true}
+                            />
+                            <label htmlFor="giphy">giphy</label>
+                            <input
+                                id="own"
+                                name="api"
+                                type="radio"
+                                required={true}
+                            />
+                            <label htmlFor="own">own</label>
+                            <label htmlFor="own"></label>
+                            <input
+                                id="own"
+                                name="api"
+                                type="text"
+                                placeholder="insert URL"
+                            />
+                        </section>
+                        <input type="submit" className='submit-btn'/>
+                    </form>
+            </div>
             <h1>My Dashboard</h1>
             <div className="task-container">
                 {tasks && uniqueCategories?.map((uniqueCategory, categoryIndex) => (
@@ -404,6 +469,7 @@ const Dashboard = () => {
                 ))}
             </div>
         </div>
+
     )
 }
 

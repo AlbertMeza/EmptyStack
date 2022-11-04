@@ -1,4 +1,20 @@
-const RegisterPage = () => {
+import React from 'react';
+
+// const RegisterPage = () => {
+class RegisterPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  };
+
+  handleChange(e) {
+    this.props.onUsernameChange(e.target.username);
+    this.props.onIsInstructorChange(e.target.is_instructor);
+    this.props.onSessionObjChange(e.target.session_obj);
+  }
+
+  render() {
+
     return (
         <>
   {/*[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]*/}
@@ -35,7 +51,7 @@ const RegisterPage = () => {
                   <form
                     className="mx-1 mx-md-4"
                     method="post"
-                    action="/users/register/attempt"
+                    action="http://localhost:3001/users/register/attempt"
                   >
                     <div className="d-flex flex-row align-items-center mb-4">
                       <i className="fas fa-user fa-lg me-3 fa-fw" />
@@ -44,6 +60,7 @@ const RegisterPage = () => {
                           type="text"
                           id="form3Example1c"
                           className="form-control"
+                          name='name'
                         />
                         <label className="form-label" htmlFor="form3Example1c">
                           Your Name
@@ -74,6 +91,7 @@ const RegisterPage = () => {
                           id="form3Example3c"
                           className="form-control"
                           name="username"
+                          //onChange={this.onChangeUsername}
                         />
                         <label className="form-label" htmlFor="form3Example3c">
                           Username
@@ -88,6 +106,7 @@ const RegisterPage = () => {
                           type="password"
                           id="form3Example4c"
                           className="form-control"
+                          name='password'
                         />
                         <label className="form-label" htmlFor="form3Example4c">
                           Password
@@ -175,6 +194,7 @@ const RegisterPage = () => {
   {/*BOOTSTRAP JS IMPORT*/}
 </>
     )
+  }
 }
 
 export default RegisterPage

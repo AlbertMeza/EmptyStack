@@ -2,7 +2,9 @@
 const { User, Instructor, Student } = require("../models");
 const passport = require("passport"); // authentication
 const jwt = require("jsonwebtoken");
-const secretkey = "secretkeyappearshere";
+const secretkey = "jmhncvajkaehrthisisfakeloldjcmvnxyewrui";
+const jwt_decode = require("jwt-decode");
+const fetch = require("node-fetch");
 
 // This function called when users login
 const attemptLogin = (req, res, next) => {
@@ -22,16 +24,16 @@ const attemptLogin = (req, res, next) => {
             message: "username or password incorrect",
           });
         } else {
-          const token = jwt.sign(
-            { userId: user._id, username: user.username },
-            secretkey,
-            { expiresIn: "24h" }
-          );
-          res.json({
-            success: true,
-            message: "Authentication successful",
-            token: token,
-          });
+          // Set cookies
+          res.cookie('username', user.username);
+          res.cookie('isInstructor', user.isInstructor);
+
+          //Redirect
+          if (user.isInstructor) {
+            res.redirect('http://localhost:3002/instructor/dashboard');
+          } else {
+            res.redirect('http://localhost:3002/student/dashboard')
+          }   
         }
       }
     })(req, res);
@@ -41,6 +43,8 @@ const attemptLogin = (req, res, next) => {
 // This function is called when a new account is created
 const registerUser = async (req, res) => {
   const payload = req.body;
+
+  console.log('hey');
 
   if (!payload) {
     return res.status(400).json({
@@ -95,6 +99,7 @@ const registerUser = async (req, res) => {
           error: "Failed to create instance of student",
         });
       }
+
       student
         .save()
         .then(() => {
@@ -112,7 +117,7 @@ const registerUser = async (req, res) => {
         });
     }
     passport.authenticate("local")(req, res, () => {
-      return res.status(200);
+      res.redirect('http://localhost:3002/student/dashboard');
     });
   });
 

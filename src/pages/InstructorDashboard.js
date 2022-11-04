@@ -1,4 +1,4 @@
-import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+//import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 // import '../../node_modules/bootstrap/dist/css/bootstrap.min.js';
 //import Accordion from 'react-bootstrap/Accordion';
 import { Accordion } from "semantic-ui-react";
@@ -417,6 +417,10 @@ const Week1Content = (
     { key: "panel-4", title: "Week 4", content: { content: Week4Content } },
   ];
 
+  const username = document.cookie
+                    .split(';')[1]
+                    .split('=')[1];
+
 const InstructorDashboard = () => {
     return (
         <>
@@ -426,7 +430,7 @@ const InstructorDashboard = () => {
   {/*[if gt IE 8]>      <html class="no-js"> <!--<![endif]*/}
   <meta charSet="utf-8" />
   <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-  <title>Instructor's Dashboard</title>
+  <title>{username}'s Dashboard</title>
   <meta name="description" content="" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link
@@ -441,7 +445,7 @@ const InstructorDashboard = () => {
   <![endif]*/}
   <div className="container-fluid min-vh-100">
     <div className="row h-40">
-      <div className="col-md-12">Instructor's Welcome Message</div>
+      <div className="col-md-12"><h3>{username}'s Welcome Message</h3></div>
     </div>
     <div className="row">
       <div className="col-md-9">

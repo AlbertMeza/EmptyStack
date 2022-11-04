@@ -1,7 +1,8 @@
 import TaskCard from "../components/TaskCard";
 import {useState} from "react"
+import Cookies from 'js-cookie';
 
-const Dashboard = () => {
+const StudentDashboard = () => {
 
     const tasks = [
         {
@@ -393,9 +394,13 @@ const Dashboard = () => {
 
     const [apiType, setAPI] = useState("")
 
+    const username = document.cookie
+                    .split(';')[1]
+                    .split('=')[1];
+
     return (
         <div className="dashboard">
-            <h1>Hello username!</h1>
+            <h1>Hello {username}!</h1>
             <h1>Vision Board</h1>
             <h4>Build your why here</h4>
             <div className="vision-container">
@@ -473,4 +478,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard
+export default StudentDashboard

@@ -8,12 +8,12 @@ const TaskPage = () => {
         progress: 0,
     })
 
-    const editMode = false
+    const editMode = true;
 
-    //const navigate = useNavigate()
+    const navigate = useNavigate()
 
     const handleSubmit = (e) => {
-        e.preventDefault()
+        navigate('/student/dashboard');
 
         // if(!editMode) {
         // const response = post request
@@ -34,8 +34,8 @@ const TaskPage = () => {
         }))
     }
 
-    const categories = ["test1","test2","test3"]
-
+    const categories = ["HTML", "CSS", "Javascript", "DOM",  "APIs", "MERN", "Authentication", "Miscellaneous"]
+    
     return (
         <div className="task">
             <h1>{editMode ? "Update your task" : "Create a task"}</h1>
@@ -159,22 +159,29 @@ const TaskPage = () => {
                     </section>
 
                     <section>
-                        <label htmlFor="owner">Owner</label>
-                        <input
-                            id="owner"
-                            name="owner"
+                        <label htmlFor="instructor">Instructor</label><input
+                            id="instructor"
+                            name="instructor"
                             type="text"
                             onChange={handleChange}
-                            required={true}
+                            required={false}
                             value={formData.owner}
                         />
+                        <label>Previous Images</label><select
+                            name="category"
+                            value={formData.category}
+                            onChange={handleChange}
+                        >    
+                        {categories.map((category, index) => (
+                            <option key={index} value={category}>{category}</option>    ))}
+                        </select>
                         <label htmlFor="avatar">Image</label>
                         <input
                             id="avatar"
                             name="avatar"
                             type="url"
                             onChange={handleChange}
-                            required={true}
+                            required={false}
                             value={formData.avatar}
                         />
                         <div className="img-preview">

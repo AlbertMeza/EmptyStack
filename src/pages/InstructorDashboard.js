@@ -417,6 +417,7 @@ const Week1Content = (
     { key: "panel-4", title: "Week 4", content: { content: Week4Content } },
   ];
 
+  /* fix the splits here */
   const username = document.cookie
                     .split(';')[1]
                     .split('=')[1];
@@ -439,78 +440,38 @@ const InstructorDashboard = () => {
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossOrigin="anonymous"
   />
-  <link rel="stylesheet" href="" />
-  {/*[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-  <![endif]*/}
   <div className="container-fluid min-vh-100">
     <div className="row h-40">
       <div className="col-md-12"><h3>{username}'s Welcome Message</h3></div>
     </div>
+
     <div className="row">
       <div className="col-md-9">
-      {/* <Accordion>
-      <Accordion.Item eventKey="0">
-        <Accordion.Header>Week #1</Accordion.Header>
-        <Accordion.Body>
-          <Accordion.Item eventKey="3">
-            <Accordion.Header>Day #1</Accordion.Header>
-                <Accordion.Body>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex ea commodo consequat. Duis aute irure dolor in
-                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                culpa qui officia deserunt mollit anim id est laborum.
-                </Accordion.Body>
-         </Accordion.Item>
-        </Accordion.Body>
-      </Accordion.Item>
-      <Accordion.Item eventKey="1">
-        <Accordion.Header>Week #2</Accordion.Header>
-        <Accordion.Body>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </Accordion.Body>
-      </Accordion.Item>
-      <Accordion.Item eventKey="2">
-        <Accordion.Header>Week #3</Accordion.Header>
-        <Accordion.Body>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </Accordion.Body>
-      </Accordion.Item>
-      <Accordion.Item eventKey="2">
-        <Accordion.Header>Week #4</Accordion.Header>
-        <Accordion.Body>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </Accordion.Body>
-      </Accordion.Item>
-    </Accordion> */}
-    <Accordion defaultActiveIndex={0} panels={rootPanels} styled />
+        <Accordion defaultActiveIndex={0} panels={rootPanels} styled />
       </div>
-      <div className="col-md-3">resources</div>
+
+      <div className="col-md-3">
+      <h5>Resources</h5>
+      <p><a href="https://developer.mozilla.org/en-US/">The Bible</a></p>
+      <p><a href="https://http.cat/" target="_blank" rel="noopener noreferrer" >Learn HTTP codes</a></p>
+      <p><a href="https://javascript.info/" target="_blank" rel="noopener noreferrer" >Javascript</a></p>
+      <p><a href="https://expressjs.com/" target="_blank" rel="noopener noreferrer" >Express</a></p>
+      <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Storage/setItem" target="_blank" rel="noopener noreferrer" >Local Storage</a></p>
+      <p><a href="https://www.freecodecamp.org/news/big-o-notation-why-it-matters-and-why-it-doesnt-1674cfa8a23c/" target="_blank" rel="noopener noreferrer" >Big O notation</a></p>
+      <p><a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account" target="_blank" rel="noopener noreferrer" >Adding SSH to github</a></p>
+      <p><a href="https://www.npmjs.com/package/body-parser" target="_blank" rel="noopener noreferrer" >NPM Body Parser</a></p>
+      <p><a href="https://youtu.be/GZvSYJDk-us" target="_blank" rel="noopener noreferrer" >APIs for Beginners</a></p>
+      <p><a href="https://www.mongodb.com/docs/v5.0/reference/mongo-shell/" target="_blank" rel="noopener noreferrer" >MongoDB</a></p>
+      <p><a href="https://mongoosejs.com/" target="_blank" rel="noopener noreferrer" >Mongoose</a></p>
+      <p><a href="https://ejs.co/" target="_blank" rel="noopener noreferrer" >EJS</a></p>
+      <p><a href="https://medium.com/make-school/how-to-deploy-your-node-js-mongodb-app-to-the-web-using-heroku-63d4bccf2675" target="_blank" rel="noopener noreferrer" >Deploy to Heroku</a></p>
+      <p><a href="https://docs.npmjs.com/cli/v8/using-npm/scripts" target="_blank" rel="noopener noreferrer" >Scripts</a></p>
+      <p><a href="https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow" target="_blank" rel="noopener noreferrer" >Redux</a></p>
+      <p><a href="https://www.npmjs.com/package/axios" target="_blank" rel="noopener noreferrer" >Axios</a></p>
+      </div>
     </div>
   </div>
 </>
-
     )
 }
 
